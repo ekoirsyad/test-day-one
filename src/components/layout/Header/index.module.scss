@@ -1,4 +1,4 @@
-@import 'styles/colors.scss';
+@import "styles/colors.scss";
 
 .background {
   position: relative;
@@ -18,7 +18,7 @@
   flex-direction: column;
   align-items: flex-start;
   > h1 {
-    color: #fff;
+    color: $primary-color-dark1;
     font-size: 2.3rem;
     font-weight: 500;
     margin-top: 9px;
@@ -26,7 +26,7 @@
   }
   > span {
     font-size: 0.95rem;
-    color: $outline-color;
+    color: $primary-color-dark1;
     line-height: 30px;
   }
   &.invert {

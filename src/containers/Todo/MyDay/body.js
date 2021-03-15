@@ -1,8 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { CSSTransition } from 'react-transition-group'
-import { EmptySpace } from 'components/ui'
-import { TodoList, Toolbar } from 'components/Todo'
+import React from "react";
+import PropTypes from "prop-types";
+import { CSSTransition } from "react-transition-group";
+import { EmptySpace } from "components/ui";
+import { TodoList, Toolbar } from "components/Todo";
 
 const MyDayBody = ({ listProps, toolbarProps }) => {
   return (
@@ -20,10 +20,10 @@ const MyDayBody = ({ listProps, toolbarProps }) => {
         />
       </CSSTransition>
       {listProps.todos.length ? <TodoList {...listProps} /> : null}
-      <Toolbar {...toolbarProps} />
+      {/* <Toolbar {...toolbarProps} /> */}
     </React.Fragment>
-  )
-}
+  );
+};
 
 MyDayBody.propTypes = {
   listProps: PropTypes.shape({
@@ -40,6 +40,6 @@ MyDayBody.propTypes = {
     onCompleteAll: PropTypes.func,
     onDeleteAll: PropTypes.func,
   }).isRequired,
-}
+};
 
-export default MyDayBody
+export default MyDayBody;

@@ -1,7 +1,9 @@
+@import "styles/colors";
+
 .button {
   border-radius: 4px;
-  color: #fff !important;
+  color: $primary-color-dark1 !important;
   svg {
-    color: #fff;
+    color: $primary-color-dark1;
   }
 }

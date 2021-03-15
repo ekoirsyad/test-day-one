@@ -1,29 +1,29 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { todosListSelector } from 'store/selectors'
-import * as TodoActions from 'store/actions/todo'
-import Header from 'components/layout/Header'
-import { EmptySpace } from 'components/ui'
-import { DateFilter } from 'components/Todo'
-import { CSSTransition } from 'react-transition-group'
-import styles from './index.module.scss'
-import MyDayBody from './body'
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { todosListSelector } from "store/selectors";
+import * as TodoActions from "store/actions/todo";
+import Header from "components/layout/Header";
+import { EmptySpace } from "components/ui";
+import { DateFilter } from "components/Todo";
+import { CSSTransition } from "react-transition-group";
+import styles from "./index.module.scss";
+import MyDayBody from "./body";
 
-const mapStateToProps = state => todosListSelector(state)
+const mapStateToProps = (state) => todosListSelector(state);
 
-const mapDispatchToProps = dispatch => ({
-  completeAll: date => dispatch(TodoActions.completeAll(date)),
-  deleteAll: date => dispatch(TodoActions.deleteAll(date)),
-  deleteTodo: id => dispatch(TodoActions.deleteTodo(id)),
-  toggleTodoStatus: id => dispatch(TodoActions.toggleTodoStatus(id)),
-  updateDateFilter: filter => dispatch(TodoActions.updateDateFilter(filter)),
-  updateStatusFilter: status =>
+const mapDispatchToProps = (dispatch) => ({
+  completeAll: (date) => dispatch(TodoActions.completeAll(date)),
+  deleteAll: (date) => dispatch(TodoActions.deleteAll(date)),
+  deleteTodo: (todo) => dispatch(TodoActions.deleteTodo(todo)),
+  toggleTodoStatus: (id) => dispatch(TodoActions.toggleTodoStatus(id)),
+  updateDateFilter: (filter) => dispatch(TodoActions.updateDateFilter(filter)),
+  updateStatusFilter: (status) =>
     dispatch(TodoActions.updateStatusFilter(status)),
-})
+});
 
-const TodoAll = props => {
-  const [scrolled, setScrolled] = useState(false)
+const TodoAll = (props) => {
+  const [scrolled, setScrolled] = useState(false);
   const {
     todos,
     filteredTodos,
@@ -33,30 +33,30 @@ const TodoAll = props => {
     totalPendingTodos,
     toggleTodoStatus,
     deleteTodo,
-  } = props
+  } = props;
 
-  const handleScroll = e => {
-    const { target: element } = e
+  const handleScroll = (e) => {
+    const { target: element } = e;
 
     if (element.scrollHeight - element.scrollTop > element.offsetHeight + 5)
-      setScrolled(true)
-    else setScrolled(false)
-  }
+      setScrolled(true);
+    else setScrolled(false);
+  };
 
-  const handleStatusFilterChange = status => props.updateStatusFilter(status)
+  const handleStatusFilterChange = (status) => props.updateStatusFilter(status);
 
-  const handleDateFilterChange = filter => props.updateDateFilter(filter)
+  const handleDateFilterChange = (filter) => props.updateDateFilter(filter);
 
-  const handleCompleteAll = () => props.completeAll(dateFilter.value)
+  const handleCompleteAll = () => props.completeAll(dateFilter.value);
 
-  const handleDeleteAll = () => props.deleteAll(dateFilter.value)
+  const handleDeleteAll = () => props.deleteAll(dateFilter.value);
 
   const listProps = {
     onScroll: handleScroll,
     todos: filteredTodos,
     toggleTodoStatus,
     deleteTodo,
-  }
+  };
 
   const toolbarProps = {
     statusFilter,
@@ -65,9 +65,9 @@ const TodoAll = props => {
     scrolled,
     onCompleteAll: handleCompleteAll,
     onDeleteAll: handleDeleteAll,
-  }
+  };
 
-  const hasTodos = totalTodosByDate > 0
+  const hasTodos = totalTodosByDate > 0;
 
   return (
     <div className={styles.root}>
@@ -114,8 +114,8 @@ const TodoAll = props => {
         />
       </CSSTransition>
     </div>
-  )
-}
+  );
+};
 
 TodoAll.propTypes = {
   completeAll: PropTypes.func.isRequired,
@@ -133,9 +133,6 @@ TodoAll.propTypes = {
   statusFilter: PropTypes.string.isRequired,
   totalTodosByDate: PropTypes.number.isRequired,
   totalPendingTodos: PropTypes.number.isRequired,
-}
+};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(TodoAll)
+export default connect(mapStateToProps, mapDispatchToProps)(TodoAll);

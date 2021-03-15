@@ -1,5 +1,5 @@
 .bubbleBackground {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   width: 100%;
@@ -16,18 +16,18 @@
   width: 800px;
   max-width: 100%;
   min-height: 520px;
-  &:before {
-    @extend .bubbleBackground;
-    left: 0;
-    background-image: url('../../../assets/bubble.svg');
-    background-position: -10px -10px;
-  }
-  &:after {
-    @extend .bubbleBackground;
-    right: 0;
-    background-image: url('../../../assets/bubble-invert.svg');
-    background-position: 100% -10px;
-  }
+  // &:before {
+  //   @extend .bubbleBackground;
+  //   left: 0;
+  //   background-image: url('../../../assets/bubble.svg');
+  //   background-position: -10px -10px;
+  // }
+  // &:after {
+  //   @extend .bubbleBackground;
+  //   right: 0;
+  //   background-image: url('../../../assets/bubble-invert.svg');
+  //   background-position: 100% -10px;
+  // }
 }
 
 .form {
